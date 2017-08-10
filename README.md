@@ -26,26 +26,44 @@ dva-cli作为脚手架和完备的react SPA构建工具
 在最外面src/index.js里面注册总路由,即由router.js输出的路由函数。
 
 app = dva() //object
+
 app.router(require('./router'))//注册总路由
 
 通过src/router.js来控制总路由。
+
 通过src/routes/子路由来控制各个组件=>那我们就可以通过路由=>组件的形式连接起来
 
 通过路由dva知道当前路由下渲染哪个组件
+
 组件通路由知道自己的children有哪些，
 
 然后看redux的内容
 
 我们平时使用redux时会选择将action和reducer分离。
+
 通过view触发action（store.dispath）传递给reducer,得到最新的store
+
 然后通过store.getState获取当前的state传递给react从而触发View更新。
+
 这也是从View中来到View中去。
 
-dva将action和reducer组合到model，并通过services提供服务支持
+dva将reducer封装到model，并通过services提供服务支持
 
 model文件包括一下几个选项
 
-	namespace String 模块的名字
+	namespace String 模块的名字//dva也是通过此处查找到具体的reducers 
+
 	state Object  所对应初始的state， 也就是initialState
-	effects saga的处理函数
-	reducers 对应reducers，不同的是，写法上将switch case转为对象
+
+	effects //saga的处理函数（存疑）
+
+	reducers 对应reducers，不同的是，写法上将switch case转为对象的方法。
+
+最后来搞一下数据流向
+View=>触发事件 antD组件支持的事件触发函数=>执行dispatch触发action=>根据action.type "namespace/reducer"查找到具体的业务逻辑
+
+=>得到新的state=>传递给react实现View层重新渲染
+
+React只是负责View层的渲染，即有什么样子的state，就会有什么样子的view。
+
+
