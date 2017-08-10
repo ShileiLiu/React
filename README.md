@@ -67,12 +67,6 @@ model文件包括一下几个选项
 
 	reducers 对应reducers，不同的是，写法上将switch case转为对象的方法。
 
-最后来搞一下数据流向
-
-View=>触发事件 antD组件支持的事件触发函数=>执行dispatch触发action=>根据action.type "namespace/reducer"
-
-查找到具体的业务逻辑=>得到新的state=>传递给react实现View层重新渲染
-
 services提供了对服务器通信的接口
 
 这里面的函数接受要传递的数据，然后请求数据库，返回接受的数据，只负责请求数据，不做任何业务处理
@@ -81,7 +75,14 @@ utils提供了各种底层的方法
 
 包括已经封装过的fetch和其他promise函数
 
-	app==>router<==>components=action+services+utils=>model=state=>components  
+
+最后来搞一下数据流向
+
+View=>触发事件 antD组件支持的事件触发函数=>执行dispatch触发action=>根据action.type "namespace/reducer"
+
+查找到具体的业务逻辑=>得到新的state=>传递给react实现View层重新渲染
+
+app==>router<==>components=action+services+utils=>model=state=>components  
 
 index.js是入口
 router.js是总路由负责声明子路由和子组件，同时负责输出最后的路由函数给index.js绑定APP
