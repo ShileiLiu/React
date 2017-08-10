@@ -68,9 +68,10 @@ model文件包括一下几个选项
 	reducers 对应reducers，不同的是，写法上将switch case转为对象的方法。
 
 最后来搞一下数据流向
-View=>触发事件 antD组件支持的事件触发函数=>执行dispatch触发action=>根据action.type "namespace/reducer"查找到具体的业务逻辑
 
-=>得到新的state=>传递给react实现View层重新渲染
+View=>触发事件 antD组件支持的事件触发函数=>执行dispatch触发action=>根据action.type "namespace/reducer"
+
+查找到具体的业务逻辑=>得到新的state=>传递给react实现View层重新渲染
 
 services提供了对服务器通信的接口
 
