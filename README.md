@@ -1,25 +1,33 @@
 # React
 
 React
+
 React核心库
 
 Redux
+
 状态管理库，用于父子组件通信的情况下完整的更新状态
-dva
+
 Redux-thunk
+
 Redux的store触发action时dispatch只能接受一个对象作为参数，并将传递给reducer进行处理，使用thunk可以将触发函数dispatch修改为可以接受一个函数A作为参数，并将dispatch作为函数A的参数传入
 
 React-promise
+
 异步操作时可以使用
 
 React-route
+
 React官方的路由管理模块
 
 antd
+
 蚂蚁金服提供的UI组件
 
 dva 
+
 dva-cli作为脚手架和完备的react SPA构建工具
+
 这东西重新封装了Redux，router,修改了整个SPA的架构模式
 先看下router
 
@@ -64,6 +72,15 @@ View=>触发事件 antD组件支持的事件触发函数=>执行dispatch触发ac
 
 =>得到新的state=>传递给react实现View层重新渲染
 
-React只是负责View层的渲染，即有什么样子的state，就会有什么样子的view。
+services提供了对服务器通信的接口
 
+这里面的函数接受要传递的数据，然后请求数据库，返回接受的数据，只负责请求数据，不做任何业务处理
 
+utils提供了各种底层的方法
+
+包括已经封装过的fetch和其他promise函数
+
+	app==>router<==>components=action+services+utils=>model=state=>components  
+
+index.js是入口
+router.js是总路由负责声明子路由和子组件，同时负责输出最后的路由函数给index.js绑定APP
