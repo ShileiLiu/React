@@ -1,12 +1,17 @@
 import React from 'react';
 import { connect } from 'dva';
 import styles from './Users.css';
+import MainLayout from '../components/MainLayout/MainLayout';
+import UsersComponent from '../components/Users/Users';
 
-function Users() {
+function Users({location}) {
+  //放在公共的mainlayout下面
   return (
-    <div className={styles.normal}>
-      Route Component: Users
-    </div>
+    <MainLayout location={location}>
+      <div className={styles.normal}>
+          <UsersComponent />
+      </div>
+    </MainLayout>
   );
 }
 
@@ -15,3 +20,4 @@ function mapStateToProps() {
 }
 
 export default connect(mapStateToProps)(Users);
+//
