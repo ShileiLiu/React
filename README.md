@@ -90,7 +90,7 @@ router.js是总路由负责声明子路由和子组件，同时负责输出最�
 
 API记录
 router -- connect
-调用方法 connect(mapStateToProps)(Users)
+调用方法 connect(mapStateToProps，mapDispatchToProps)(Users)
 其中mapStateToProps可以传入数据给组件的props，同时，他的第一个参数是Redux的store，第二个参数ownProps是组件自己的props  
 返回一个纯对象，里面是要加入组件的props的值
 	const mapStateToProps = (state, ownProps) => {
@@ -113,29 +113,27 @@ router -- connect
 	}
 
 	const Comp = connect(mapStateToProps)(MyComp);
-connect 的第二个参数是 mapDispatchToProps，它的功能是，将 action 作为 props 绑定到MyComp 上。
+	当state，ownProps变化时，mapStateToProps都会被调用，计算出一个新的stateProps.更新给MyComp
+mapDispatchToProps是connect的第二个参数，他将action作为props绑定到组建上
 	const mapDispatchToProps = (dispatch, ownProps) => {
-	  return {
-	    increase: (...args) => dispatch(actions.increase(...args)),
-	    decrease: (...args) => dispatch(actions.decrease(...args))
-	  }
+	return {
+		increase: (...args) => dispatch(actions.increase(...args)),
+		decrease: (...args) => dispatch(actions.decrease(...args))
+	}
 	}
 
 	class MyComp extends Component {
-	  render(){
-	    const {count, increase, decrease} = this.props;
-	    return (<div>
-	      <div>计数：{this.props.count}次</div>
-	      <button onClick={increase}>增加</button>
-	      <button onClick={decrease}>减少</button>
-	    </div>)
-	  }
+	render(){
+		const {count, increase, decrease} = this.props;
+		return (<div>
+		<div>计数：{this.props.count}次</div>
+		<button onClick={increase}>增加</button>
+		<button onClick={decrease}>减少</button>
+		</div>)
+	}
 	}
 
 	const Comp = connect(mapStateToProps， mapDispatchToProps)(MyComp)
-由于 mapDispatchToProps 方法返回了具有 increase 属性和 decrease 属性的对象，这两个属性也会成为 MyComp 的 props。
-同样，当 ownProps 变化的时候，该函数也会被调用，生成一个新的 dispatchProps
+mapDispatchToProps的第一个参数是dispatch，第二个是组件自己的props类似上面的函数
 
-connect的第三个参数是merge的合并方式，是对象的合并方式
-默认Object.assign浅复制方法
-connect的第四个参数是option配置项  使用较少一般就是前两个
+上面的例子中increase和decrease也会成为组件的props，
