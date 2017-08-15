@@ -4,12 +4,13 @@ import styles from './Users.css';
 import MainLayout from '../components/MainLayout/MainLayout';
 import UsersComponent from '../components/Users/Users';
 
-function Users({location}) {
+function Users({location,children}) {
   //放在公共的mainlayout下面
+  console.log(children);
   return (
     <MainLayout location={location}>
       <div className={styles.normal}>
-          <UsersComponent />
+          {children}
       </div>
     </MainLayout>
   );
