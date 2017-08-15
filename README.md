@@ -58,11 +58,40 @@ React官方的路由管理模块
 
 	定义路由函数，并export给index.js，通过app.router（）进行注册
 
-	这个router.js将所有子路由进行了注册。
+	这个router.js将所有子路由进行了汇总后export。
 
 	比如路由是'/'即为空的时候页面跳转'/home','/home'这个路由的首页是'/home/overview'
 
-	类似于路由重定向，通过getComponent获得组件，
+	类似于路由重定向，
+
+	通过getComponent获得组件，
+
+	通过routes文件夹下面的子路由文件将子路由与组件进行绑定
+	import React from 'react'
+	import { connect } from 'dva'
+
+	import OverviewComponent from '../../components/Home/Overview'
+
+	function Overview ({ location }) {
+	  return (
+	    <div>
+	      <OverviewComponent />
+	    </div>
+	  )
+	}
+
+	function mapStateToProps() {
+	  return {}
+	}
+
+	export default connect(mapStateToProps)(Overview)
+
+	如上所示，这是overview的子路由文件，也就是业务组件外层的第一层壳。  
+
+	routes文件就是mainLayout（最外层的组件）+二级公共组件/三级组件等组合后最后输出的总组件
+
+	这就是子路由文件起的作用，组合组件，最后输出一个大的组件。
+
 antd
 
 蚂蚁金服提供的UI组件
@@ -72,21 +101,12 @@ dva
 dva-cli作为脚手架和完备的react SPA构建工具
 
 这东西重新封装了Redux，router,修改了整个SPA的架构模式
-先看下router
 
 在最外面src/index.js里面注册总路由,即由router.js输出的路由函数。
 
 app = dva() //object
 
 app.router(require('./router'))//注册总路由
-
-通过src/router.js来控制总路由。
-
-通过src/routes/子路由来控制各个组件=>那我们就可以通过路由=>组件的形式连接起来
-
-通过路由dva知道当前路由下渲染哪个组件
-
-组件通路由知道自己的children有哪些，
 
 然后看redux的内容
 
