@@ -20,6 +20,49 @@ React-route
 
 React官方的路由管理模块
 
+其运行原理是在路由注册文件router.js里对组件进行预先的规定
+
+可以通过两种模式
+
+1：根据路由按照依赖加载组件
+	const routes = [ {
+	      path: '/',
+	      indexRoute: {
+	        onEnter: (nextState, replace) => replace('/home')
+	      }
+	    },
+	    {
+	      path: '/home',
+	      indexRoute: {
+	        onEnter: (nextState, replace) => replace('/home/overview')
+	      },
+	      //webpack内置函数
+	      getComponent (nextState, cb) {
+	        require.ensure([], require => {
+	          cb(null, require('./routes/Home'))//路由回调
+	        })
+	      },
+	      childRoutes: [{
+	        path: 'overview',
+	        getComponent (nextState, cb) {
+	          require.ensure([], require => {
+	            cb(null, require('./routes/Home/Overview'))
+	          })
+	        }
+	      }]
+	    }
+	]
+	return <Router history={createBrowserHistory()} routes={routes} />
+
+	如以上代码所示
+
+	定义路由函数，并export给index.js，通过app.router（）进行注册
+
+	这个router.js将所有子路由进行了注册。
+
+	比如路由是'/'即为空的时候页面跳转'/home','/home'这个路由的首页是'/home/overview'
+
+	类似于路由重定向，通过getComponent获得组件，
 antd
 
 蚂蚁金服提供的UI组件
