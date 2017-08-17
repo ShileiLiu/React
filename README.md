@@ -202,3 +202,7 @@ mapDispatchToProps是connect的第二个参数，他将action作为props绑定�
 mapDispatchToProps的第一个参数是dispatch，第二个是组件自己的props类似上面的函数
 
 上面的例子中increase和decrease也会成为组件的props，
+
+React的核心------props,state的数据传递.
+
+
