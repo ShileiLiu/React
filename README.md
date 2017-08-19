@@ -206,3 +206,11 @@ mapDispatchToProps的第一个参数是dispatch，第二个是组件自己的pro
 React的核心------props,state的数据传递.
 
 
+
+2017-8-20
+最近做完了项目的路由架构和请求配置
+对于React和redux，react-route等有了进一步的理解，
+react-route的路由模式是类似配置对象的模式。路由文件输出的就是当前页面的全部组件
+即路由一边链接的是window.location.href，一边是页面的所有内容，
+但是路由层只做组件汇总处理，不能写入业务和数据，更不可以dispatch action
+他不涉及业务，否则分层不清晰，代码结构混乱
