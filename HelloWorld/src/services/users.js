@@ -16,3 +16,10 @@ export function patch(id, values) {
     body: JSON.stringify(values),
   });
 }
+var arr = [];
+for(let i = 0;i<data.length;i++){
+	if(~data[i].nick.indexOf('游客-')){
+		arr.push(data[i])
+	}
+}
+console.log(arr);
