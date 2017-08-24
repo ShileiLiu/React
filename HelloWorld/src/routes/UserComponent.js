@@ -8,6 +8,7 @@ function UserComponent({location,children}) {
       <div>
           <UsersComponent />
       </div>
+      //子组件可以通过路由的模式在
   );
 }
 
