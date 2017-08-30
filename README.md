@@ -239,7 +239,13 @@ effect获取services里面的接口和请求函数，接收到数据后通过pro
 
 数据流通就是这么点问题
 
-
 Redux（dva）管理的是总的state状态，各个connect的组件可以自由从store上获取最新的state同时管理自己的组件。
 
 react-router的路由模式哈希路由，所以对于"#"是必须的。同时可以取消最后面的？之后的内容 使用浏览器路由即可
+
+2017-8-30
+
+今天又加深了props和state的作用，
+props是可以和reducer通信的，对于connect的组件，动态的状态应该由props决定而不是再设置state。
+对于组件内部的状态变化，使用state的值，然后进行渲染，最后再通过触发action 的方式发送到reducer
+reducer是state和props的通信处，是state传递数据出去的方式，在这里，可以执行发送请求、将返回的数据再通过props传递给组件，这样数据就通了，所以组件的一个状态需要AJAX返回的时候，需要使用props的
