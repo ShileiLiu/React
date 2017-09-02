@@ -251,7 +251,12 @@ props是可以和reducer通信的，对于connect的组件，动态的状态应�
 reducer是state和props的通信处，是state传递数据出去的方式，在这里，可以执行发送请求、将返回的数据再通过props传递给组件，这样数据就通了，所以组件的一个状态需要AJAX返回的时候，需要使用props的
 
 
+
+
 2017-9-1
 React的双向绑定
 需要给input或者switchBtn或者checkbox绑定事件，然后绑定到state上。
 state可以在render里拿到props里的值，这样就可以绑定默认值
+
+
+angular，Vue，React都是通过数据确定状态的框架，其思想有相通之处
