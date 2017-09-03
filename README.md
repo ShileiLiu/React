@@ -259,4 +259,8 @@ React的双向绑定
 state可以在render里拿到props里的值，这样就可以绑定默认值
 
 
+ 
+
+
+ 
 angular，Vue，React都是通过数据确定状态的框架，其思想有相通之处
